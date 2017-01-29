@@ -31,10 +31,10 @@
 				height: 384px;
 				margin-top: 0px;
 				background: #1A2980;
-				background: -webkit-linear-gradient(-90deg, #1A2980, #26D0CE);
-				background: -o-linear-gradient(-90deg, #1A2980, #26D0CE);
-				background: -moz-linear-gradient(-90deg, #1A2980, #26D0CE);
-				background: linear-gradient(-90deg, #1A2980, #26D0CE);
+				background: -webkit-linear-gradient(-90deg, #fc00ff, #00dbde);
+				background: -o-linear-gradient(-90deg, #fc00ff, #00dbde);
+				background: -moz-linear-gradient(-90deg, #fc00ff, #00dbde);
+				background: linear-gradient(-90deg, #fc00ff, #00dbde);
 				background-size: 400% 400%;
 				border-top: 4px solid white;
 				border-bottom: 4px solid white;
@@ -119,7 +119,8 @@
 			
 			#navigation > ul > li > a {
 				display: block;
-				padding: 8px;
+				box-sizing: border-box;
+				padding: 7px;
 				text-decoration: none;
 				color: white;
 				-webkit-transition: background-color 0.5s;
@@ -138,6 +139,7 @@
 				box-sizing: border-box;
 				box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 				z-index: 1;
+				margin-top: 1px;
 			}
 			
 			.drc a {
@@ -146,6 +148,10 @@
 				text-decoration: none;
 				display: block;
 				text-align: left;
+			}
+			
+			.drc a:hover {
+				background-color: #f1f1f1;
 			}
 			
 			.drop:hover .drc {
@@ -165,28 +171,25 @@
 			<h2> 2017 </h2>
 		</div>
 		<div id='navigation'> 
+			<!-- Yes, the spacing here is atrocious. Sorry. -->
 			<ul>
-				   <li class='drop'><a href='#' class='drb'>Jan</a>
-					<div class='drc'>
-						<a href='#'> A </a>
-						<a href='#'> B </a>
-					</div>
-				   </li><!--
-				--><li class='drop'><a href='#' class='drb'>Feb</a>
-					<div class='drc'>
-						<a href='#'> A </a>
-						<a href='#'> B </a>
-					</div></li><!--
-				--><li><a href='#'>Mar</a></li><!--
-				--><li><a href='#'>Apr</a></li><!--
-				--><li><a href='#'>May</a></li><!--
-				--><li><a href='#'>Jun</a></li><!--
-				--><li><a href='#'>Jul</a></li><!--
-				--><li><a href='#'>Aug</a></li><!--
-				--><li><a href='#'>Sep</a></li><!--
-				--><li><a href='#'>Oct</a></li><!--
-				--><li><a href='#'>Nov</a></li><!--
-				--><li><a href='#'>Dec</a></li>
+					<li class='drop'><a href='#' class='drb'>Jan</a>
+						<div class='drc'>
+							<a href='#'> Pixelception </a>
+							<a href='#'> Mandelbrot </a>
+						</div>
+					</li><!--
+				 --><li><a href='#'>Feb</a></li><!--
+				 --><li><a href='#'>Mar</a></li><!--
+				 --><li><a href='#'>Apr</a></li><!--
+				 --><li><a href='#'>May</a></li><!--
+				 --><li><a href='#'>Jun</a></li><!--
+				 --><li><a href='#'>Jul</a></li><!--
+				 --><li><a href='#'>Aug</a></li><!--
+				 --><li><a href='#'>Sep</a></li><!--
+				 --><li><a href='#'>Oct</a></li><!--
+				 --><li><a href='#'>Nov</a></li><!--
+				 --><li><a href='#'>Dec</a></li>
 			</ul>
 		</div>
 		
