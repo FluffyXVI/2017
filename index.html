@@ -108,19 +108,52 @@
 			#navigation > ul > li {
 				display: inline-block;
 				margin: 0;
-				padding: 8px;
 				height: 36px;
 				width: 8%;
 				text-align: center;
 				box-sizing: border-box;
 				border-right: 1px solid white;
 				font-family: Oswald, sans-serif;
-				color: white;
 				text-transform: uppercase;
 			}
 			
+			#navigation > ul > li > a {
+				display: block;
+				padding: 8px;
+				text-decoration: none;
+				color: white;
+				-webkit-transition: background-color 0.5s;
+				transition: background-color 0.5s;
+			}
+			
 			#navigation > ul > li > a:hover {
-				background-color: red;
+				background-color: #2980b9;
+			}
+			
+			.drc {
+				display: none;
+				position: absolute;
+				background-color: #f9f9f9;
+				width: 8%;
+				box-sizing: border-box;
+				box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+				z-index: 1;
+			}
+			
+			.drc a {
+				color: black;
+				padding: 12px 16px;
+				text-decoration: none;
+				display: block;
+				text-align: left;
+			}
+			
+			.drop:hover .drc {
+				display: block;
+			}
+			
+			.drop:hover .drb {
+				background-color: #2980b9;
 			}
 			
 		</style>
@@ -133,18 +166,27 @@
 		</div>
 		<div id='navigation'> 
 			<ul>
-				   <li>Jan</li><!--
-				--><li>Feb</li><!--
-				--><li>Mar</li><!--
-				--><li>Apr</li><!--
-				--><li>May</li><!--
-				--><li>Jun</li><!--
-				--><li>Jul</li><!--
-				--><li>Aug</li><!--
-				--><li>Sep</li><!--
-				--><li>Oct</li><!--
-				--><li>Nov</li><!--
-				--><li>Dec</li>
+				   <li class='drop'><a href='#' class='drb'>Jan</a>
+					<div class='drc'>
+						<a href='#'> A </a>
+						<a href='#'> B </a>
+					</div>
+				   </li><!--
+				--><li class='drop'><a href='#' class='drb'>Feb</a>
+					<div class='drc'>
+						<a href='#'> A </a>
+						<a href='#'> B </a>
+					</div></li><!--
+				--><li><a href='#'>Mar</a></li><!--
+				--><li><a href='#'>Apr</a></li><!--
+				--><li><a href='#'>May</a></li><!--
+				--><li><a href='#'>Jun</a></li><!--
+				--><li><a href='#'>Jul</a></li><!--
+				--><li><a href='#'>Aug</a></li><!--
+				--><li><a href='#'>Sep</a></li><!--
+				--><li><a href='#'>Oct</a></li><!--
+				--><li><a href='#'>Nov</a></li><!--
+				--><li><a href='#'>Dec</a></li>
 			</ul>
 		</div>
 		
