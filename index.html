@@ -1,5 +1,6 @@
 <html>
 	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href="https://fonts.googleapis.com/css?family=Oswald|Raleway" rel="stylesheet">
 		<style>
 			body {
@@ -70,19 +71,32 @@
 			#main {
 				width: 65%;
 				min-width: 480px;
-				height: 1024px;
+				min-height: 512px;
 				margin: 32px auto;
 				background-color: white;
 				border: 1px solid #cbcbcb;
 				border-radius: 4px;
 				padding: 12px;
 			}
-			
-			#main > h1, #main > h2 {
+
+			#main h1, #main h2, #main h3, #main h4, #main h5, #main h6 {
 				color: #3498db;
 				font-family: Oswald, sans-serif;
-				margin-top: 0px;
+				margin-top: 2px;
 				margin-bottom: 0px;
+				line-height: 1.45;
+			}
+			
+			#main h1 {
+				text-align: center;
+				font-size: 2.5em;
+			}
+			
+			#main h2 {
+				font-size: 2em;
+			}
+			
+			#main h1, #main h2 {
 				border-bottom: 1px solid lightgray;
 			}
 			
@@ -194,10 +208,39 @@
 		</div>
 		
 		<div id='main'>
-			<h1> January </h1>
-			<p> Text goes here. It's good text. My hands are typing words! </p>
-			<h2> Subheading </h2>
-			<p> Subheadings are still cool. Everything looks great. </p>
+			<h2> January </h2>
+				<h3> Pixelception </h3>
+					<p> A series of scripts that generate an image from a collage of different images. These include generating a palette from a folder of images, and matching each pixel in the base image to a palette sample.  </p>
+				<h3> Mandelbrot </h3>
+					<p> Originally created for a Maths C assignment in 2016, then updated in January by request of a friend. These scripts focus on analysing variations of the Mandelbrot set and Julia sets, and explore some of the correlations between them. </p>
+			<h2> February </h2>
+				<h3> MicroPoint </h3>
+					<p> Experiments in using data from a micro:bit to control the mouse cursor, or to update a visual display. </p>
+				<h3> Solar System </h3>
+					<p> A remake of a project originally completed in 2015. A simplified simulation of a solar system, including stars, planets, and moons. </p>
+			<h2> March </h2>
+				<p> Future projects to be determined. </p>
+				<br>
+			<!--
+			<h2> April </h2>
+				<br> <br>
+			<h2> May </h2>
+				<br> <br>
+			<h2> June </h2>
+				<br> <br>
+			<h2> July </h2>
+				<br> <br>
+			<h2> August </h2>
+				<br> <br>
+			<h2> September </h2>
+				<br> <br>
+			<h2> October </h2>
+				<br> <br>
+			<h2> November </h2>
+				<br> <br>
+			<h2> December </h2>
+				<br> <br> <br>
+			-->
 		</div>
 		
 	</body>
