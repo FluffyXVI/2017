@@ -1,0 +1,158 @@
+<html>
+	<head>
+		<link href="https://fonts.googleapis.com/css?family=Oswald|Raleway" rel="stylesheet">
+		<style>
+			body {
+				background-image: url('img/bg.png');
+				margin: 0;
+				min-width: 540px;
+			}
+			
+			@-webkit-keyframes GradientPulse {
+				0%{background-position:0% 50%}
+				50%{background-position:100% 50%}
+				100%{background-position:0% 50%}
+			}
+			
+			@-moz-keyframes GradientPulse {
+				0%{background-position:0% 50%}
+				50%{background-position:100% 50%}
+				100%{background-position:0% 50%}
+			}
+			
+			@keyframes GradientPulse {
+				0%{background-position:0% 50%}
+				50%{background-position:100% 50%}
+				100%{background-position:0% 50%}
+			}
+			
+			#gradhead {
+				width: 100%;
+				height: 384px;
+				margin-top: 0px;
+				background: #1A2980;
+				background: -webkit-linear-gradient(-90deg, #1A2980, #26D0CE);
+				background: -o-linear-gradient(-90deg, #1A2980, #26D0CE);
+				background: -moz-linear-gradient(-90deg, #1A2980, #26D0CE);
+				background: linear-gradient(-90deg, #1A2980, #26D0CE);
+				background-size: 400% 400%;
+				border-top: 4px solid white;
+				border-bottom: 4px solid white;
+				
+				-webkit-animation: GradientPulse 30s ease infinite;
+				-moz-animation: GradientPulse 30s ease infinite;
+				animation: GradientPulse 30s ease infinite;
+			}
+			
+			#avatar {
+				display: block;
+				width: 256px;
+				height: 256px;
+				border-radius: 256px;
+				border: 8px solid white;
+				margin: 8px auto;
+			}
+
+			#gradhead > h1, #gradhead > h2 {
+				margin-top: 0px;
+				margin-bottom: 0px;
+				color: white;
+				font-family: Oswald, sans-serif;
+				text-align: center;
+			}
+			#navigation {
+				height: 36px;
+				background-color: #3498db;
+				border-bottom: 4px solid white;
+				text-align: center;
+			}
+			
+			#main {
+				width: 65%;
+				min-width: 480px;
+				height: 1024px;
+				margin: 32px auto;
+				background-color: white;
+				border: 1px solid #cbcbcb;
+				border-radius: 4px;
+				padding: 12px;
+			}
+			
+			#main > h1, #main > h2 {
+				color: #3498db;
+				font-family: Oswald, sans-serif;
+				margin-top: 0px;
+				margin-bottom: 0px;
+				border-bottom: 1px solid lightgray;
+			}
+			
+			#main > p {
+				font-family: Raleway, sans-serif;
+			}
+			
+			#navigation {
+				min-width: 540px;
+				margin: 0 auto;
+			}
+			
+			#navigation > ul {
+				margin: 0;
+				padding: 0;
+				display: inline;
+			}
+			
+			#navigation > ul > li:first-child {				
+				border-left: 1px solid white;
+			}
+			
+			#navigation > ul > li {
+				display: inline-block;
+				margin: 0;
+				padding: 8px;
+				height: 36px;
+				width: 8%;
+				text-align: center;
+				box-sizing: border-box;
+				border-right: 1px solid white;
+				font-family: Oswald, sans-serif;
+				color: white;
+				text-transform: uppercase;
+			}
+			
+			#navigation > ul > li > a:hover {
+				background-color: red;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id='gradhead'>
+			<img src='img/fluffyxvi.jpg' id='avatar'>
+			<h1> ROBERT FRASER </h1>
+			<h2> 2017 </h2>
+		</div>
+		<div id='navigation'> 
+			<ul>
+				   <li>Jan</li><!--
+				--><li>Feb</li><!--
+				--><li>Mar</li><!--
+				--><li>Apr</li><!--
+				--><li>May</li><!--
+				--><li>Jun</li><!--
+				--><li>Jul</li><!--
+				--><li>Aug</li><!--
+				--><li>Sep</li><!--
+				--><li>Oct</li><!--
+				--><li>Nov</li><!--
+				--><li>Dec</li>
+			</ul>
+		</div>
+		
+		<div id='main'>
+			<h1> January </h1>
+			<p> Text goes here. It's good text. My hands are typing words! </p>
+			<h2> Subheading </h2>
+			<p> Subheadings are still cool. Everything looks great. </p>
+		</div>
+		
+	</body>
