@@ -2,190 +2,15 @@
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href="https://fonts.googleapis.com/css?family=Oswald|Raleway" rel="stylesheet">
-		<style>
-			body {
-				background-image: url('img/bg.png');
-				margin: 0;
-				min-width: 540px;
-			}
-			
-			@-webkit-keyframes GradientPulse {
-				0%{background-position:0% 50%}
-				50%{background-position:100% 50%}
-				100%{background-position:0% 50%}
-			}
-			
-			@-moz-keyframes GradientPulse {
-				0%{background-position:0% 50%}
-				50%{background-position:100% 50%}
-				100%{background-position:0% 50%}
-			}
-			
-			@keyframes GradientPulse {
-				0%{background-position:0% 50%}
-				50%{background-position:100% 50%}
-				100%{background-position:0% 50%}
-			}
-			
-			#gradhead {
-				width: 100%;
-				height: 384px;
-				margin-top: 0px;
-				background: #1A2980;
-				background: -webkit-linear-gradient(-90deg, #fc00ff, #00dbde);
-				background: -o-linear-gradient(-90deg, #fc00ff, #00dbde);
-				background: -moz-linear-gradient(-90deg, #fc00ff, #00dbde);
-				background: linear-gradient(-90deg, #fc00ff, #00dbde);
-				background-size: 400% 400%;
-				border-top: 4px solid white;
-				border-bottom: 4px solid white;
-				
-				-webkit-animation: GradientPulse 30s ease infinite;
-				-moz-animation: GradientPulse 30s ease infinite;
-				animation: GradientPulse 30s ease infinite;
-			}
-			
-			#avatar {
-				display: block;
-				width: 256px;
-				height: 256px;
-				border-radius: 256px;
-				border: 8px solid white;
-				margin: 8px auto;
-			}
-
-			#gradhead > h1, #gradhead > h2 {
-				margin-top: 0px;
-				margin-bottom: 0px;
-				color: white;
-				font-family: Oswald, sans-serif;
-				text-align: center;
-			}
-			#navigation {
-				height: 36px;
-				background-color: #3498db;
-				border-bottom: 4px solid white;
-				text-align: center;
-			}
-			
-			#main {
-				width: 65%;
-				min-width: 480px;
-				min-height: 512px;
-				margin: 32px auto;
-				background-color: white;
-				border: 1px solid #cbcbcb;
-				border-radius: 4px;
-				padding: 12px;
-			}
-
-			#main h1, #main h2, #main h3, #main h4, #main h5, #main h6 {
-				color: #3498db;
-				font-family: Oswald, sans-serif;
-				margin-top: 2px;
-				margin-bottom: 0px;
-				line-height: 1.45;
-			}
-			
-			#main h1 {
-				text-align: center;
-				font-size: 2.5em;
-			}
-			
-			#main h2 {
-				font-size: 2em;
-			}
-			
-			#main h1, #main h2 {
-				border-bottom: 1px solid lightgray;
-			}
-			
-			#main > p {
-				font-family: Raleway, sans-serif;
-			}
-			
-			#navigation {
-				min-width: 540px;
-				margin: 0 auto;
-			}
-			
-			#navigation > ul {
-				margin: 0;
-				padding: 0;
-				display: inline;
-			}
-			
-			#navigation > ul > li:first-child {				
-				border-left: 1px solid white;
-			}
-			
-			#navigation > ul > li {
-				display: inline-block;
-				margin: 0;
-				height: 36px;
-				width: 8%;
-				text-align: center;
-				box-sizing: border-box;
-				border-right: 1px solid white;
-				font-family: Oswald, sans-serif;
-				text-transform: uppercase;
-			}
-			
-			#navigation > ul > li > a {
-				display: block;
-				box-sizing: border-box;
-				padding: 7px;
-				text-decoration: none;
-				color: white;
-				-webkit-transition: background-color 0.5s;
-				transition: background-color 0.5s;
-			}
-			
-			#navigation > ul > li > a:hover {
-				background-color: #2980b9;
-			}
-			
-			.drc {
-				display: none;
-				position: absolute;
-				background-color: #f9f9f9;
-				width: 8%;
-				min-width: 140px;
-				box-sizing: border-box;
-				box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-				z-index: 1;
-				margin-top: 1px;
-			}
-			
-			.drc a {
-				color: black;
-				padding: 12px 16px;
-				text-decoration: none;
-				display: block;
-				text-align: left;
-			}
-			
-			.drc a:hover {
-				background-color: #f1f1f1;
-			}
-			
-			.drop:hover .drc {
-				display: block;
-			}
-			
-			.drop:hover .drb {
-				background-color: #2980b9;
-			}
-			
-		</style>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 	<body>
 		<div id='gradhead'>
 			<img src='img/fluffyxvi.jpg' id='avatar'>
-			<h1> ROBERT FRASER </h1>
+			<h1> Robert Fraser </h1>
 			<h2> 2017 </h2>
 		</div>
-		<div id='navigation'> 
+		<div id='navigation'>
 			<!-- Yes, the spacing here is atrocious. Sorry. -->
 			<ul>
 					<li class='drop'><a href='#' class='drb'>Jan</a>
@@ -219,29 +44,6 @@
 					<p> Experiments in using data from a micro:bit to control the mouse cursor, or to update a visual display. </p>
 				<h3> Solar System </h3>
 					<p> A remake of a project originally completed in 2015. A simplified simulation of a solar system, including stars, planets, and moons. </p>
-			<h2> March </h2>
-				<p> Future projects to be determined. </p>
-				<br>
-			<!--
-			<h2> April </h2>
-				<br> <br>
-			<h2> May </h2>
-				<br> <br>
-			<h2> June </h2>
-				<br> <br>
-			<h2> July </h2>
-				<br> <br>
-			<h2> August </h2>
-				<br> <br>
-			<h2> September </h2>
-				<br> <br>
-			<h2> October </h2>
-				<br> <br>
-			<h2> November </h2>
-				<br> <br>
-			<h2> December </h2>
-				<br> <br> <br>
-			-->
 		</div>
 		
 	</body>
