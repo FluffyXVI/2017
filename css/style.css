@@ -55,6 +55,7 @@ body {
 	color: white;
 	font-family: Oswald, sans-serif;
 	text-align: center;
+	text-transform: uppercase;
 }
 #navigation {
 	height: 36px;
