@@ -4,14 +4,14 @@ Assorted projects completed in 2017. Further information about these projects, i
 ## Modules
 Many of my projects would not be possible without some fantastic community-created modules.
 ### Pillow
-'''
-pip install pillow
-'''
+```
+  pip install pillow
+```
 Used in Pixelception and Mandelbrot in order to create and save images.
 ### PyAutoGUI
-'''
-pip install pyautogui
-'''
+```
+  pip install pyautogui
+```
 Used in Micropoint to manipulate the mouse cursor from micro:bit data.
 
 ## January
