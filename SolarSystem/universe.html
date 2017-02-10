@@ -36,14 +36,17 @@
 		var cx = 0;
 		var cy = 0;
 		
-		var size = Math.floor((Math.random() * 10) + 3);
+		function RandomRange( min, max ) {
+			var cap = max - min + 1;
+			return Math.floor((Math.random() * cap) + min)
+		}
 		
 		function RandomMoon( parent ) {
 			var moon = {}
-			moon.size = 10
+			moon.size = RandomRange( 8, 14 )
 			moon.color = "purple"
-			moon.radius = Math.floor((Math.random() * 32) + 16)
-			moon.angle = Math.floor(Math.random() * 360)
+			moon.radius = RandomRange( 20, 40 )
+			moon.angle = RandomRange( 0, 360 )
 			moon.speed = Math.random()
 			
 			parent.children.push( moon )
@@ -51,15 +54,14 @@
 		
 		function RandomPlanet( lastradius ) {
 			var planet = {}
-			planet.size = Math.floor((Math.random() * 16) + 16);
+			planet.size = RandomRange( 14, 28 )
 			planet.color = "blue"
-			planet.radius = lastradius + Math.floor((Math.random() * 32) + 16);
-			planet.angle = Math.floor(Math.random() * 360)
+			planet.radius = lastradius + RandomRange( 32, 70 )
+			planet.angle = RandomRange( 0, 360 )
 			planet.speed = Math.random() * 1.25
 			planet.children = []
 			var moon = Math.random()
-			if ( moon > 0.9 ) {
-				RandomMoon( planet )
+			if ( moon > 0.5 && lastradius > 100 ) {
 				RandomMoon( planet )
 			}
 			solarsystem.children.push( planet )
@@ -76,6 +78,7 @@
 		}
 		var i;
 		var lastradius = 48;
+		var size = RandomRange( 3, 10 )
 		for (i=0; i < size; i++) {
 			lastradius += RandomPlanet( lastradius )
 		}
