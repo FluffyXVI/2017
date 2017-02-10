@@ -52,10 +52,14 @@
 			parent.children.push( moon )
 		}
 		
+		var pcolors = [ "CadetBlue", "Chocolate", "Coral", "CornflowerBlue", "DarkBlue", "DarkCyan",
+						"DarkGreen", "DarkMagenta", "DarkOliveGreen", "DarkSeaGreen", "DimGray",
+						"FireBrick", "GoldenRod", "LightBlue", "LightSeaGreen", "LightYellow",
+						"MistyRose", "OliveDrab", "SeaShell", "Sienna", "SkyBlue", "Wheat" ]
 		function RandomPlanet( lastradius ) {
 			var planet = {}
 			planet.size = RandomRange( 14, 28 )
-			planet.color = "blue"
+			planet.color = pcolors[Math.floor(Math.random()*pcolors.length)]
 			planet.radius = lastradius + RandomRange( 32, 70 )
 			planet.angle = RandomRange( 0, 360 )
 			planet.speed = Math.random() * 1.25
