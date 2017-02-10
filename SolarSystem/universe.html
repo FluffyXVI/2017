@@ -41,15 +41,25 @@
 			return Math.floor((Math.random() * cap) + min)
 		}
 		
-		function RandomMoon( parent ) {
-			var moon = {}
-			moon.size = RandomRange( 8, 14 )
-			moon.color = "purple"
-			moon.radius = RandomRange( 20, 40 )
-			moon.angle = RandomRange( 0, 360 )
-			moon.speed = Math.random()
-			
-			parent.children.push( moon )
+		var mcolors = [	"AliceBlue", "Azure", "BurlyWood", "DarkGray", "DimGray", "Gray", "Indigo",
+						"Lavender", "LavenderBlush", "LightBlue", "LightSteelBlue", "MediumOrchid",
+						"MediumVioletRed", "MidnightBlue", "Orchid", "Plum", "PowderBlue", "Purple",
+						"RebeccaPurple", "RosyBrown", "Silver", "SlateGray", "Snow", "WhiteSmoke" ]
+		function RandomMoon( parent, count ) {
+			var speed = Math.random()
+			var radius = RandomRange( 22, 32 )
+			var gap = 360 / count
+			var i;
+			for (i=0; i < count; i++) {
+				var moon = {}
+				moon.size = RandomRange( 6, 10 )
+				moon.color = mcolors[Math.floor(Math.random()*mcolors.length)]
+				moon.radius = radius
+				moon.angle = i*gap
+				moon.speed = speed
+				
+				parent.children.push( moon )
+			}
 		}
 		
 		var pcolors = [ "CadetBlue", "Chocolate", "Coral", "CornflowerBlue", "DarkBlue", "DarkCyan",
@@ -58,15 +68,15 @@
 						"MistyRose", "OliveDrab", "SeaShell", "Sienna", "SkyBlue", "Wheat" ]
 		function RandomPlanet( lastradius ) {
 			var planet = {}
-			planet.size = RandomRange( 14, 28 )
+			planet.size = RandomRange( 14, 24 )
 			planet.color = pcolors[Math.floor(Math.random()*pcolors.length)]
-			planet.radius = lastradius + RandomRange( 40, 128 )
+			planet.radius = lastradius + RandomRange( 56, 128 )
 			planet.angle = RandomRange( 0, 360 )
-			planet.speed = Math.random() * 1.25
+			planet.speed = Math.random() * (100/lastradius)
 			planet.children = []
 			var moon = Math.random()
-			if ( moon > 0.5 && lastradius > 100 ) {
-				RandomMoon( planet )
+			if ( moon > 0.6 && lastradius > 100 ) {
+				RandomMoon( planet, RandomRange( 1, 6 ) )
 			}
 			solarsystem.children.push( planet )
 			return planet.radius
