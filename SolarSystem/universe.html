@@ -60,7 +60,7 @@
 			var planet = {}
 			planet.size = RandomRange( 14, 28 )
 			planet.color = pcolors[Math.floor(Math.random()*pcolors.length)]
-			planet.radius = lastradius + RandomRange( 32, 70 )
+			planet.radius = lastradius + RandomRange( 40, 128 )
 			planet.angle = RandomRange( 0, 360 )
 			planet.speed = Math.random() * 1.25
 			planet.children = []
@@ -84,7 +84,7 @@
 		var lastradius = 48;
 		var size = RandomRange( 3, 10 )
 		for (i=0; i < size; i++) {
-			lastradius += RandomPlanet( lastradius )
+			lastradius = RandomPlanet( lastradius )
 		}
 		
 		function GetCirclePoint( object, ox, oy ) {
