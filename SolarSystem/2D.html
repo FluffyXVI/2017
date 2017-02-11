@@ -144,10 +144,15 @@
 			DrawObject( solarsystem, cx, cy );
 		}
 		
+		cf.addEventListener("mousewheel", MouseWheelHandler, false);
 		cf.addEventListener("wheel", MouseWheelHandler, false);
-		cf.addEventListener("DOMMouseScroll", MouseWheelHandler, false);
+		cf.addEventListener("DOMMouseScroll", MouseWheelFox, false);
 		function MouseWheelHandler( e ) {
 			var scale = e.deltaY / 4000
+			zoom = zoom + scale
+		};
+		function MouseWheelFox( e ) {
+			var scale = e.detail/80
 			zoom = zoom + scale
 		};
 		
