@@ -7,8 +7,8 @@ function RandomRange( min, max ) {
 	return Math.floor((Math.random() * cap) + min);
 }
 
-if (typeof GeneratePlanetCube != "function") {
-	function GeneratePlanetCube( size, color ) {
+if (typeof GeneratePlanetGeometry != "function") {
+	function GeneratePlanetGeometry( size, color, star ) {
 		var geo = new THREE.BoxGeometry( size, size, size );
 		for ( var i = 0; i < geo.faces.length; i+=2 ) {
 			var c = new THREE.Color( color ).addScalar( -i/48 )
@@ -19,15 +19,16 @@ if (typeof GeneratePlanetCube != "function") {
 		return new THREE.Mesh( geo, mat );
 	}
 }
-
-function GenerateOrbitalPath( radius ) {
-	var curve = new THREE.EllipseCurve(0, 0, radius, radius, 0, 2 * Math.PI, false, Math.PI);
-	var path = new THREE.Path( curve.getPoints( 60 ) ).createPointsGeometry();
-	var ellipse = new THREE.Line( path, new THREE.LineBasicMaterial( { color : 0x444444 } ) );
-	ellipse.rotation.x = Math.PI / 2;
-	ellipse.position.x = 0;
-	scene.add( ellipse );
-	return ellipse
+if (typeof GenerateOrbitalPath != "function") {
+	function GenerateOrbitalPath( radius ) {
+		var curve = new THREE.EllipseCurve(0, 0, radius, radius, 0, 2 * Math.PI, false, Math.PI);
+		var path = new THREE.Path( curve.getPoints( 60 ) ).createPointsGeometry();
+		var ellipse = new THREE.Line( path, new THREE.LineBasicMaterial( { color : 0x444444 } ) );
+		ellipse.rotation.x = Math.PI / 2;
+		ellipse.position.x = 0;
+		scene.add( ellipse );
+		return ellipse
+	}
 }
 
 var pcolors = [ "cadetblue", "chocolate", "coral", "cornflowerblue", "darkblue", "darkcyan",
@@ -36,10 +37,10 @@ var pcolors = [ "cadetblue", "chocolate", "coral", "cornflowerblue", "darkblue",
 			"mistyrose", "olivedrab", "seashell", "sienna", "skyblue", "wheat" ]
 if (typeof GeneratePlanetObject != "function") {
 	function GeneratePlanetObject() {
-		var size = (Math.random() * 0.65) + 0.3;
-		var radius = lastradius + (Math.random()*1.15) + 0.65;
+		var size = (Math.random() * 0.60) + 0.25;
+		var radius = lastradius + (Math.random()*1.10) + 0.825;
 		lastradius = radius
-		var object = GeneratePlanetCube( size, pcolors[Math.floor(Math.random() * pcolors.length)])
+		var object = GeneratePlanetGeometry( size, pcolors[Math.floor(Math.random() * pcolors.length)])
 		var planet = {
 			size: size,
 			radius: radius,
@@ -65,7 +66,7 @@ document.body.appendChild( canvas.domElement );
 var lastradius = 1
 var planets = []
 
-var cube = GeneratePlanetCube( 1, "orange" )
+var cube = GeneratePlanetGeometry( 1, "orange", true )
 scene.add( cube );
 
 for (var i = 0; i < zoom; i++) { 
