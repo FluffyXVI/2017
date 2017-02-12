@@ -35,6 +35,15 @@
 				camera.position.y = camera.position.z/3;
 			}
 			
+			function CreateUniverse() {
+				star = GeneratePlanetGeometry( 1, "orange", true )
+				scene.add( star );
+		
+				for (var i = 0; i < 1000; i++) { 
+					GeneratePlanetObject()
+				}
+			}
+			
 			function GenerateOrbitalPath() {}
 		</script>
 		<script src='3dsolar.js'> </script>

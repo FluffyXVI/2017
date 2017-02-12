@@ -57,6 +57,19 @@ if (typeof GeneratePlanetObject != "function") {
 	}
 }
 
+if (typeof CreateUniverse != "function") {
+	function CreateUniverse() {
+			
+		star = GeneratePlanetGeometry( 1, "orange", true )
+		scene.add( star );
+		
+		for (var i = 0; i < zoom; i++) { 
+			GeneratePlanetObject()
+		}
+		
+	}
+}
+
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
 var canvas = new THREE.WebGLRenderer();
@@ -65,38 +78,35 @@ document.body.appendChild( canvas.domElement );
 
 var lastradius = 1
 var planets = []
-
-var cube = GeneratePlanetGeometry( 1, "orange", true )
-scene.add( cube );
-
-for (var i = 0; i < zoom; i++) { 
-	GeneratePlanetObject()
-}
+var star;
+CreateUniverse()
 
 camera.position.z = zoom;
 camera.position.y = camera.position.z/3;
 
 camera.lookAt( new THREE.Vector3() );
 
-var render = function () {
-	requestAnimationFrame( render );
-	if( typeof RenderAdditional == 'function') {
-		RenderAdditional()
-	}
-	cube.rotation.y += 0.005;
-	for (var i = 0; i < planets.length; i++) { 
-		var p = planets[i]
-		var o = p.object
-		var t = p.orbit % 1
-		o.position.x = Math.sin( t*Math.PI*2 ) * p.radius
-		o.position.z = Math.cos( t*Math.PI*2 ) * p.radius
-		o.rotation.y += p.rotate
-		p.orbit += p.speed
-		if (p.orbit > 1) {
-			p.orbit -= 1
+if (typeof render != "function") {
+	var render = function () {
+		requestAnimationFrame( render );
+		if( typeof RenderAdditional == 'function') {
+			RenderAdditional()
 		}
-	}
-	canvas.render(scene, camera);
-};
+		star.rotation.y += 0.005;
+		for (var i = 0; i < planets.length; i++) { 
+			var p = planets[i]
+			var o = p.object
+			var t = p.orbit % 1
+			o.position.x = Math.sin( t*Math.PI*2 ) * p.radius
+			o.position.z = Math.cos( t*Math.PI*2 ) * p.radius
+			o.rotation.y += p.rotate
+			p.orbit += p.speed
+			if (p.orbit > 1) {
+				p.orbit -= 1
+			}
+		}
+		canvas.render(scene, camera);
+	};
+}
 
 render();
