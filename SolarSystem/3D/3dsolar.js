@@ -7,15 +7,17 @@ function RandomRange( min, max ) {
 	return Math.floor((Math.random() * cap) + min);
 }
 
-function GeneratePlanetCube( size, color ) {
-	var geo = new THREE.BoxGeometry( size, size, size );
-	for ( var i = 0; i < geo.faces.length; i+=2 ) {
-		var c = new THREE.Color( color ).addScalar( -i/48 )
-		geo.faces[ i ].color = c;
-		geo.faces[ i+1 ].color = c;
+if (typeof GeneratePlanetCube != "function") {
+	function GeneratePlanetCube( size, color ) {
+		var geo = new THREE.BoxGeometry( size, size, size );
+		for ( var i = 0; i < geo.faces.length; i+=2 ) {
+			var c = new THREE.Color( color ).addScalar( -i/48 )
+			geo.faces[ i ].color = c;
+			geo.faces[ i+1 ].color = c;
+		}
+		var mat = planetmaterial;
+		return new THREE.Mesh( geo, mat );
 	}
-	var mat = planetmaterial;
-	return new THREE.Mesh( geo, mat );
 }
 
 function GenerateOrbitalPath( radius ) {
@@ -32,24 +34,26 @@ var pcolors = [ "cadetblue", "chocolate", "coral", "cornflowerblue", "darkblue",
 			"darkgreen", "darkmagenta", "darkolivegreen", "darkseagreen", "dimgray",
 			"firebrick", "goldenrod", "lightblue", "lightseagreen", "lightyellow",
 			"mistyrose", "olivedrab", "seashell", "sienna", "skyblue", "wheat" ]
-function GeneratePlanetObject() {
-	var size = (Math.random() * 0.65) + 0.3;
-	var radius = lastradius + (Math.random()*1.15) + 0.65;
-	lastradius = radius
-	var object = GeneratePlanetCube( size, pcolors[Math.floor(Math.random() * pcolors.length)])
-	var planet = {
-		size: size,
-		radius: radius,
-		speed: Math.random()*0.008 * 1/(radius*0.4) + 0.001,
-		angle: Math.random() * 360,
-		orbit: Math.random(),
-		rotate: (Math.random()*0.1) + 0.015,
-		object: object,
-		path: GenerateOrbitalPath( radius )
+if (typeof GeneratePlanetObject != "function") {
+	function GeneratePlanetObject() {
+		var size = (Math.random() * 0.65) + 0.3;
+		var radius = lastradius + (Math.random()*1.15) + 0.65;
+		lastradius = radius
+		var object = GeneratePlanetCube( size, pcolors[Math.floor(Math.random() * pcolors.length)])
+		var planet = {
+			size: size,
+			radius: radius,
+			speed: Math.random()*0.008 * 1/(radius*0.4) + 0.001,
+			angle: Math.random() * 360,
+			orbit: Math.random(),
+			rotate: (Math.random()*0.1) + 0.015,
+			object: object,
+			path: GenerateOrbitalPath( radius )
+		}
+		planets.push( planet )
+		scene.add( object );
+		return planet
 	}
-	planets.push( planet )
-	scene.add( object );
-	return planet
 }
 
 var scene = new THREE.Scene();
