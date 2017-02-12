@@ -23,7 +23,6 @@ function UpdateZoom( direction ) {
 		for (var i = 0; i < Math.floor(zoom/10); i++) {
 			GeneratePlanetObject()
 		}
-		console.log( zoom )
 	}
 	
 	for (var i = 0; i < planets.length; i++) {
