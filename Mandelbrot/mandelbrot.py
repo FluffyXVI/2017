@@ -24,10 +24,34 @@ ic = radius / ( (resolution-1) * 0.5 )
 img = Image.new( 'RGB', ( resolution, resolution ), "black")
 pixels = img.load()
 
+# With these two functions, any powers can be calculated
 def SquareValue( r, i ):
 	# a+bi squared = ( a squared - b squared ) + ( 2abi )
 	n = (( r*r ) - ( i*i ))
 	i = 2*r*i
+	return n, i
+	
+def CubeValue( r, i ):
+	# a+bi cubed = a cubed + 3a squared bi - 3a b squared - b cubed i
+	# Maths is great
+	n = (r**3) - (3*r*i*i)
+	i = (3*r*r*i) - (i*i*i)
+	return n, i
+	
+def AddComplex(*args):
+	n = 0
+	i = 0
+	for each in args:
+		n += each[0]
+		i += each[1]
+	return n, i
+	
+def SubtractComplex(*args):
+	n = 0
+	i = 0
+	for each in args:
+		n -= each[0]
+		i -= each[1]
 	return n, i
 
 # This function can be changed to create very different Mandelbrot sets	
@@ -40,8 +64,7 @@ def IteratePixel( real, imagine ):
 	# Iterate the value until the quality has been reached or it has 'escaped'
 	while abs( ti ) < 2 and abs( tr ) < 2 and iterations < quality:
 		tr, ti = SquareValue( tr, ti )
-		tr += real
-		ti += imagine
+		tr, ti = AddComplex( (tr,ti), (real,imagine) )
 		iterations = iterations + 1
 	return iterations
 
