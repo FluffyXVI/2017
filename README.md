@@ -8,11 +8,11 @@ Many of my projects would not be possible without some fantastic community-creat
   pip install pillow
 ```
 Used in Pixelception and Mandelbrot in order to create and save images.
-### PyAutoGUI
-```
-  pip install pyautogui
-```
-Used in Micropoint to manipulate the mouse cursor from micro:bit data.
+### ThreeJS
+'''
+  https://threejs.org/
+'''
+Used in my 3D browser projects, including my Solar System.
 
 ## January
 ### Pixelception
@@ -22,9 +22,6 @@ A series of scripts involving generating images out of a collage of other images
 Originally created for a Maths C assignment in 2016, then updated in January by request of a friend. These scripts focus on analysing variations of the Mandelbrot set and Julia sets, and explore some of the correlations between them.
 
 ## February
-### MicroPoint
-Experiments involving getting data from a micro:bit to control the mouse cursor, or update a visual display.
-
 ### Solar System
-A remake of a project originally completed in 2015. A simplified simulation of a solar system, including stars, planets, and moons.
+A remake of a project originally completed in 2015. A simplified simulation of a solar system, including stars, planets, and moons. Updated further to create some exciting 3D effects.
 
