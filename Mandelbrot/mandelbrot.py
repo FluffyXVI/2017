@@ -1,29 +1,6 @@
 # Robert Fraser 2017
 from PIL import Image
 
-# Adjust view window
-centerx = float(input("CenterX: "))
-centery = float(input("CenterY: "))
-radius = float(input("Radius: "))
-
-# Adjust colors
-rmod = 0.5
-gmod = 1
-bmod = 2
-
-# Adjust output quality
-resolution = int(input("Resolution: "))
-quality = int(input("Quality: "))
-
-# Calculations for number to pixel
-startx = centerx - radius
-starty = centery - radius
-
-ic = radius / ( (resolution-1) * 0.5 )
-
-img = Image.new( 'RGB', ( resolution, resolution ), "black")
-pixels = img.load()
-
 # With these two functions, any powers can be calculated
 def SquareValue( r, i ):
 	# a+bi squared = ( a squared - b squared ) + ( 2abi )
@@ -69,16 +46,42 @@ def IteratePixel( real, imagine ):
 	return iterations
 
 # Iterate each pixel and color accordingly
-for xx in range( img.size[0] ):
-	creal = startx + (ic*xx)
-	for yy in range( img.size[1] ):
-		cimagine = starty + (ic*yy)
-		iterations = IteratePixel( creal, cimagine )
+def GenerateMandelbrot(**kwargs):
+	print( kwargs )
+	resolution = kwargs.get('resolution', 256)
+	quality = kwargs.get('quality', 32)
+	img = kwargs.get('image', Image.new( 'RGB', ( resolution, resolution ), "black"))
+	pixels = img.load()
+	func = kwargs.get('function', IteratePixel)
+	colors = kwargs.get('color', (0.5, 1, 2))
+	center = kwargs.get('center', (-0.7, 0))
+	radius = kwargs.get('radius', 1.25)
+	
+	# Calculations for number to pixel
+	startx = center[0] - radius
+	starty = center[1] - radius
+
+	ic = radius / ( (resolution-1) * 0.5 )
+	
+	for xx in range( img.size[0] ):
+		creal = startx + (ic*xx)
+		for yy in range( img.size[1] ):
+			cimagine = starty + (ic*yy)
+			iterations = func( creal, cimagine )
+			
+			qc = int( iterations * ( 256/quality) )
+			col = ( int( qc * colors[0] ), int( qc * colors[1] ), int(qc * colors[2] ) )
+			if iterations == quality:
+				col = ( 0, 0, 0 )
+			pixels[ xx, yy ] = col
+	return img
 		
-		qc = int( iterations * ( 256/quality) )
-		col = ( int( qc * rmod ), int( qc * gmod ), int(qc * bmod ) )
-		if iterations == quality:
-			col = ( 0, 0, 0 )
-		pixels[ xx, yy ] = col
-		
-img.save( "mandelbrot.png", "PNG" )	
+if __name__ == "__main__":
+	# Configurable settings if run directly
+	center = (float(input("CenterX: ")), float(input("CenterY: ")))
+	radius = float(input("Radius: "))
+	color = (0.5, 1, 2)
+	resolution = int(input("Resolution: "))
+	quality = int(input("Quality: "))
+	output = GenerateMandelbrot(center=center, radius=radius, color=color, resolution=resolution, quality=quality)
+	output.save( "mandelbrot.png", "PNG" )
