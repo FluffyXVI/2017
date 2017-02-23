@@ -15,6 +15,19 @@ def CubeValue( r, i ):
 	i = (3*r*r*i) - (i*i*i)
 	return n, i
 	
+def ComplexPower( r, i, power ):
+	# Mixes the above two functions to work with any power.
+	while power > 1:
+		if power % 3 == 0:
+			r, i = CubeValue( r, i )
+			power -= 3
+		elif power % 2 == 0:
+			r, i = SquareValue( r, i )
+			power -= 2
+		else:
+			break
+	return r, i
+	
 def AddComplex(*args):
 	n = 0
 	i = 0
@@ -30,6 +43,9 @@ def SubtractComplex(*args):
 		n -= each[0]
 		i -= each[1]
 	return n, i
+	
+def InverseComplex( r, i ):
+	return ( -r, -i )
 
 # This function can be changed to create very different Mandelbrot sets	
 def IteratePixel( real, imagine ):
