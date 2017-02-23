@@ -1,32 +1,18 @@
 # Robert Fraser 2017
 from PIL import Image
 
-# With these two functions, any powers can be calculated
 def SquareValue( r, i ):
-	# a+bi squared = ( a squared - b squared ) + ( 2abi )
-	n = (( r*r ) - ( i*i ))
-	i = 2*r*i
-	return n, i
-	
-def CubeValue( r, i ):
-	# a+bi cubed = a cubed + 3a squared bi - 3a b squared - b cubed i
-	# Maths is great
-	n = (r**3) - (3*r*i*i)
-	i = (3*r*r*i) - (i*i*i)
-	return n, i
+	return ComplexPower( r, i, 2 )
 	
 def ComplexPower( r, i, power ):
-	# Mixes the above two functions to work with any power.
-	while power > 1:
-		if power % 3 == 0:
-			r, i = CubeValue( r, i )
-			power -= 3
-		elif power % 2 == 0:
-			r, i = SquareValue( r, i )
-			power -= 2
-		else:
-			break
-	return r, i
+	# Multiplication is great
+	nr = r
+	ni = i
+	power -= 1
+	while power >= 1:
+		nr, ni = MultiplyComplex( (nr, ni), (r, i) )
+		power -= 1
+	return nr, ni
 	
 def AddComplex(*args):
 	n = 0
@@ -44,8 +30,12 @@ def SubtractComplex(*args):
 		i -= each[1]
 	return n, i
 	
+def MultiplyComplex( c1, c2 ):
+	# (ac - bd) + (ad + bc)i
+	return (c1[0] * c2[0]) - (c1[1] * c2[1]), (c1[0] * c2[1]) + (c1[1] * c2[0])
+	
 def InverseComplex( r, i ):
-	return ( -r, -i )
+	return -r, -i
 
 # This function can be changed to create very different Mandelbrot sets	
 def IteratePixel( real, imagine, quality, *extra ):
@@ -56,7 +46,7 @@ def IteratePixel( real, imagine, quality, *extra ):
 	# ti represents the imaginary componenent
 	# Iterate the value until the quality has been reached or it has 'escaped'
 	while abs( ti ) < 2 and abs( tr ) < 2 and iterations < quality:
-		tr, ti = SquareValue( tr, ti )
+		tr, ti = ComplexPower( tr, ti, 2 )
 		tr, ti = AddComplex( (tr,ti), (real,imagine) )
 		iterations = iterations + 1
 	return iterations
