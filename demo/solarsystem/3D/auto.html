@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<style>
+			body {
+				margin: 0;
+				background-color: black;
+				width: 100%;
+				height: 100%;
+			}
+			canvas {
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/84/three.js"> </script>
+		<script>
+			var zt = 0
+			var zu = true
+			
+			function RenderAdditional() {
+				zoom = ((zt<.5 ? 2*zt*zt : -1+(4-2*zt)*zt) * 200) + 10
+				if ( zu == true ) {
+					zt = zt + 0.001
+				} else {
+					zt = zt - 0.001
+				}
+				if ( zt > 1 ) {
+					zu = false
+				} else if( zt < 0){
+					zu = true
+				}
+				camera.position.z = zoom;
+				camera.position.y = camera.position.z/3;
+			}
+			
+			function CreateUniverse() {
+				star = GeneratePlanetGeometry( 1, "orange", true )
+				scene.add( star );
+		
+				for (var i = 0; i < 1000; i++) { 
+					GeneratePlanetObject()
+				}
+			}
+			
+			function GenerateOrbitalPath() {}
+		</script>
+		<script src='3dsolar.js'> </script>
+	</body>

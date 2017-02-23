@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			html, body {
+				width:  100%;
+				height: 100%;
+				margin: 0px;
+				overflow: hidden;
+			}
+			canvas {
+				display: block;
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id='background' style='background-color: black; z-index: 0;'> </canvas>
+		<canvas id='foreground' style='z-index: 1;'> </canvas>
+	</body>
+	
+	<script>
+		var cb = document.getElementById('background');
+		var cf = document.getElementById('foreground');
+		var bg = cb.getContext('2d');
+		var fg = cf.getContext('2d');
+		var zoom = 1;
+		var drag = false;
+		var sx = 0;
+		var sy = 0;
+		
+		var cx = 0;
+		var cy = 0;
+		
+		function RandomRange( min, max ) {
+			var cap = max - min + 1;
+			return Math.floor((Math.random() * cap) + min)
+		}
+		
+		var mcolors = [	"AliceBlue", "Azure", "BurlyWood", "DarkGray", "DimGray", "Gray", "Indigo",
+						"Lavender", "LavenderBlush", "LightBlue", "LightSteelBlue", "MediumOrchid",
+						"MediumVioletRed", "MidnightBlue", "Orchid", "Plum", "PowderBlue", "Purple",
+						"RebeccaPurple", "RosyBrown", "Silver", "SlateGray", "Snow", "WhiteSmoke" ]
+		function RandomMoon( parent, count ) {
+			var speed = Math.random()
+			var radius = RandomRange( 22, 32 )
+			var gap = 360 / count
+			var i;
+			for (i=0; i < count; i++) {
+				var moon = {}
+				moon.size = RandomRange( 6, 10 )
+				moon.color = mcolors[Math.floor(Math.random()*mcolors.length)]
+				moon.radius = radius
+				moon.angle = i*gap
+				moon.speed = speed
+				
+				parent.children.push( moon )
+			}
+		}
+		
+		var pcolors = [ "CadetBlue", "Chocolate", "Coral", "CornflowerBlue", "DarkBlue", "DarkCyan",
+						"DarkGreen", "DarkMagenta", "DarkOliveGreen", "DarkSeaGreen", "DimGray",
+						"FireBrick", "GoldenRod", "LightBlue", "LightSeaGreen", "LightYellow",
+						"MistyRose", "OliveDrab", "SeaShell", "Sienna", "SkyBlue", "Wheat" ]
+		function RandomPlanet( lastradius ) {
+			var planet = {}
+			planet.size = RandomRange( 14, 24 )
+			planet.color = pcolors[Math.floor(Math.random()*pcolors.length)]
+			planet.radius = lastradius + RandomRange( 56, 128 )
+			planet.angle = RandomRange( 0, 360 )
+			planet.speed = Math.random() * (100/lastradius)
+			planet.children = []
+			var moon = Math.random()
+			if ( moon > 0.6 && lastradius > 100 ) {
+				RandomMoon( planet, RandomRange( 1, 6 ) )
+			}
+			solarsystem.children.push( planet )
+			return planet.radius
+		}
+		
+		var solarsystem = {
+			size: 64,
+			color: "orange",
+			radius: 0,
+			speed: 0,
+			angle: 0,
+			children: [],
+		}
+		var i;
+		var lastradius = 48;
+		var size = RandomRange( 3, 10 )
+		for (i=0; i < size; i++) {
+			lastradius = RandomPlanet( lastradius )
+		}
+		
+		function GetCirclePoint( object, ox, oy ) {
+			if ( object.radius == 0 ) {
+				return {x: ox, y: oy};
+			}
+			
+			xx = Math.cos( object.angle/180*Math.PI ) * object.radius + ox;
+			yy = Math.sin( object.angle/180*Math.PI ) * object.radius + oy;
+			return {x: xx, y: yy};
+		}
+		
+		function DrawObject( object, ox, oy ) {
+			if ( object.radius > 0 ) {
+				bg.strokeStyle = "lightgray";
+				bg.beginPath();
+				bg.arc( ox, oy, object.radius, 0, Math.PI * 2 );
+				bg.stroke();
+			}
+			var r = object.size / 2;
+			var pos = GetCirclePoint( object, ox, oy );
+			fg.fillStyle = object.color;
+			fg.fillRect( pos.x - r, pos.y - r, r*2, r*2 )
+			object.angle += object.speed;
+			
+			if ( object.children ) {
+				var i;
+				for (i=0; i < object.children.length; i++) {
+					DrawObject( object.children[i], pos.x, pos.y )
+				}
+			}
+		}
+		
+		function DrawSolarSystem() {
+			var w = cb.width = cb.clientWidth;
+			var h = cb.height = cb.clientHeight;
+			var nw = w * zoom;
+			var nh = h * zoom;
+			cf.width = cf.clientWidth;
+			cf.height = cf.clientHeight;
+			cx = w/2
+			cy = h/2
+			fg.translate( -(nw-w)/2, -(nh-h)/2 );
+			bg.translate( -(nw-w)/2, -(nh-h)/2 );
+			bg.scale( zoom, zoom );
+			fg.scale( zoom, zoom );
+			DrawObject( solarsystem, cx, cy );
+		}
+		
+		cf.addEventListener("mousewheel", MouseWheelHandler, false);
+		cf.addEventListener("wheel", MouseWheelHandler, false);
+		cf.addEventListener("DOMMouseScroll", MouseWheelFox, false);
+		function MouseWheelHandler( e ) {
+			var scale = -e.deltaY/4000
+			zoom = zoom + scale
+		};
+		function MouseWheelFox( e ) {
+			var scale = -e.detail/80
+			zoom = zoom + scale
+		};
+		
+
+		
+		
+		var drawHook = setInterval( DrawSolarSystem, 1000/60 )
+	</script>
+</html>

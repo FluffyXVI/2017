@@ -1,0 +1,106 @@
+<html>
+	<head>
+		<style>
+			body {
+				margin: 0;
+				background-color: black;
+				width: 100%;
+				height: 100%;
+			}
+			canvas {
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/84/three.js"> </script>
+		<script src='shape.js'> </script>
+		<script>
+			var zt = 0
+			var zu = true
+			
+			function RenderAdditional() {
+				zoom = ((zt<.5 ? 2*zt*zt : -1+(4-2*zt)*zt) * 100) + 15
+				if ( zu == true ) {
+					zt = zt + 0.001
+				} else {
+					zt = zt - 0.001
+				}
+				if ( zt > 1 ) {
+					zu = false
+				} else if( zt < 0){
+					zu = true
+				}
+				camera.position.z = zoom;
+				camera.position.y = camera.position.z/3;
+			}
+			
+			function CreateUniverse() {
+				star = CreateSpherePlanet( 4, "darkgray" )
+				scene.add( star );
+				for (var i = 150; i > 10; i-=2) { 
+					var o = GeneratePlanetObject()
+					o.radius = i
+				}
+			}
+			
+			function GeneratePlanetGeometry( size, color, star ) {
+				return RandomShapePlanet( size, color, star );
+			}
+			
+			function GeneratePlanetObject() {
+				var size = (Math.random() * 0.80) + 0.35;
+				var radius = 150
+				var object = GeneratePlanetGeometry( size, pcolors[Math.floor(Math.random() * pcolors.length)])
+				var planet = {
+					size: size,
+					radius: radius,
+					speed: 0.0015,
+					angle: 0,
+					orbit: Math.random(),
+					rotate: (Math.random()*0.1) + 0.015,
+					object: object,
+					path: GenerateOrbitalPath( radius )
+				}
+				planets.push( planet )
+				scene.add( object );
+				return planet
+			}
+			
+			function GenerateOrbitalPath() {}
+			
+			var lastadd = 0;
+			function render() {
+				requestAnimationFrame( render );
+				if( typeof RenderAdditional == 'function') {
+					RenderAdditional()
+				}
+				for (var i = 0; i < planets.length; i++) { 
+					var p = planets[i]
+					var o = p.object
+					var t = p.orbit % 1
+					o.position.x = Math.sin( t*Math.PI*2 ) * p.radius
+					o.position.z = Math.cos( t*Math.PI*2 ) * p.radius
+					o.rotation.y += p.rotate
+					p.orbit += p.speed
+					planets[i].radius -= p.speed * 3
+					if (planets[i].radius < 2.5 ) {
+						scene.remove( o )
+						planets.splice( i, 1 )
+					}
+					if (p.orbit > 1) {
+						p.orbit -= 1
+					}
+				}
+				console.log( planets[1].radius )
+				lastadd += 1
+				if (lastadd > 45) {
+					lastadd = 0;
+					GeneratePlanetObject();
+				}
+				canvas.render(scene, camera);
+			}
+		</script>
+		<script src='3dsolar.js'> </script>
+	</body>
