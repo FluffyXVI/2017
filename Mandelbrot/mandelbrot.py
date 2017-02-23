@@ -48,7 +48,7 @@ def InverseComplex( r, i ):
 	return ( -r, -i )
 
 # This function can be changed to create very different Mandelbrot sets	
-def IteratePixel( real, imagine ):
+def IteratePixel( real, imagine, quality, *extra ):
 	tr = 0
 	ti = 0
 	iterations = 0
@@ -63,7 +63,6 @@ def IteratePixel( real, imagine ):
 
 # Iterate each pixel and color accordingly
 def GenerateMandelbrot(**kwargs):
-	print( kwargs )
 	resolution = kwargs.get('resolution', 256)
 	quality = kwargs.get('quality', 32)
 	img = kwargs.get('image', Image.new( 'RGB', ( resolution, resolution ), "black"))
@@ -72,6 +71,8 @@ def GenerateMandelbrot(**kwargs):
 	colors = kwargs.get('color', (0.5, 1, 2))
 	center = kwargs.get('center', (-0.7, 0))
 	radius = kwargs.get('radius', 1.25)
+	extra1 = kwargs.get('extra1', None)
+	extra2 = kwargs.get('extra2', None)
 	
 	# Calculations for number to pixel
 	startx = center[0] - radius
@@ -83,7 +84,7 @@ def GenerateMandelbrot(**kwargs):
 		creal = startx + (ic*xx)
 		for yy in range( img.size[1] ):
 			cimagine = starty + (ic*yy)
-			iterations = func( creal, cimagine )
+			iterations = func( creal, cimagine, quality, extra1, extra2 )
 			
 			qc = int( iterations * ( 256/quality) )
 			col = ( int( qc * colors[0] ), int( qc * colors[1] ), int(qc * colors[2] ) )
