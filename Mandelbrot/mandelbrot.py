@@ -69,8 +69,8 @@ def GenerateMandelbrot(**kwargs):
 	pixels = img.load()
 	func = kwargs.get('function', IteratePixel)
 	colors = kwargs.get('color', (0.5, 1, 2))
-	center = kwargs.get('center', (-0.7, 0))
-	radius = kwargs.get('radius', 1.25)
+	center = kwargs.get('center', (0, 0))
+	radius = kwargs.get('radius', 1.5)
 	extra1 = kwargs.get('extra1', None)
 	extra2 = kwargs.get('extra2', None)
 	
