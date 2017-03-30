@@ -47,12 +47,14 @@ def CreatePolyImage( size, cell, vrate, angle ):
 	img = img.crop( (cell, cell, cell+size, cell+size) )
 	return img
 
-for i in range(100):
-	rmin = random.randint( 0, 12 ) * 10
-	rmax = rmin + random.randint( 0, 12 ) * 10
-	gmin = random.randint( 0, 12 ) * 10
-	gmax = gmin + random.randint( 0, 12 ) * 10
-	bmin = random.randint( 0, 12 ) * 10
-	bmax = bmin + random.randint( 0, 12 ) * 10
-	angle = random.choice( [0, 90, 180, 270] )
-	CreatePolyImage( 512, 46, 2.25, angle ).save( 'gen/' + str(i) + '.png' )
+if __name__ == "__main__":
+	for i in range(100):
+		rmin = random.randint( 0, 12 ) * 10
+		rmax = rmin + random.randint( 0, 12 ) * 10
+		gmin = random.randint( 0, 12 ) * 10
+		gmax = gmin + random.randint( 0, 12 ) * 10
+		bmin = random.randint( 0, 12 ) * 10
+		bmax = bmin + random.randint( 0, 12 ) * 10
+		
+		angle = random.choice( [0, 90, 180, 270] )
+		CreatePolyImage( 512, 46, 2.25, angle ).save( 'gen/' + str(i) + '.png' )
