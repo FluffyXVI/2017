@@ -14,14 +14,15 @@ Used in Pixelception and Mandelbrot in order to create and save images.
 '''
 Used in my 3D browser projects, including my Solar System.
 
-## January
 ### Pixelception
 A series of scripts involving generating images out of a collage of other images.
 
 ### Mandelbrot
 Originally created for a Maths C assignment in 2016, then updated in January by request of a friend. These scripts focus on analysing variations of the Mandelbrot set and Julia sets, and explore some of the correlations between them.
 
-## February
 ### Solar System
 A remake of a project originally completed in 2015. A simplified simulation of a solar system, including stars, planets, and moons. Updated further to create some exciting 3D effects.
+
+### Polygon
+A simple script to generate a pattern out of triangles.
 
