@@ -23,6 +23,22 @@ def GetColor( max, x, y, v ):
 	gchange = gmax - gmin
 	bchange = bmax - bmin
 	return ( math.floor(rchange*fracx) + rmin, math.floor(gchange*fracx) + gmin, math.floor(bchange*fracx) + bmin )
+	
+def AverageColorRange( max, x1, x2 ):
+	# ax + b gets the color at point x
+	# This will need three different definite integrations
+	rchange = rmax - rmin
+	gchange = gmax - gmin
+	bchange = bmax - bmin
+	range = (x2 - x1) / max
+	v = 0.1
+	v = random.uniform(-v, v)
+	x2 = (x2/max) + v
+	x1 = (x1/max) + v/4
+	rsum = ( (rchange/2 * x2 * x2) + (rmin * x2 ) ) - ( (rchange/2 * x1 * x1) + (rmin * x1 ) )
+	gsum = ( (gchange/2 * x2 * x2) + (gmin * x2 ) ) - ( (gchange/2 * x1 * x1) + (gmin * x1 ) )
+	bsum = ( (bchange/2 * x2 * x2) + (bmin * x2 ) ) - ( (bchange/2 * x1 * x1) + (bmin * x1 ) )
+	return ( math.floor( rsum/range ), math.floor( gsum/range ), math.floor( bsum/range ) )
 		
 	
 def CreatePolyImage( size, cell, vrate, angle ):
