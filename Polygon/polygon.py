@@ -80,12 +80,22 @@ def CreateGradientImage( size, angle ):
 
 if __name__ == "__main__":
 	for i in range(100):
-		rmin = random.randint( 0, 12 ) * 10
-		rmax = rmin + random.randint( 0, 12 ) * 10
-		gmin = random.randint( 0, 12 ) * 10
-		gmax = gmin + random.randint( 0, 12 ) * 10
-		bmin = random.randint( 0, 12 ) * 10
-		bmax = bmin + random.randint( 0, 12 ) * 10
+		r1 = random.randint( 0, 255 )
+		r2 = random.randint( 0, 255 )
+		rmax = max(r1, r2)
+		rmin = min(r1, r2)
 		
-		angle = random.choice( [0, 90, 180, 270] )
-		CreatePolyImage( 512, 46, 2.25, angle ).save( 'gen/' + str(i) + '.png' )
+		g1 = random.randint( 0, 255 )
+		g2 = random.randint( 0, 255 )
+		gmax = max(g1, g2)
+		gmin = min(g1, g2)
+		
+		b1 = random.randint( 0, 255 )
+		b2 = random.randint( 0, 255 )
+		bmax = max(b1, b2)
+		bmin = min(b1, b2)
+		
+		#angle = random.choice( [0, 90, 180, 270] )
+		angle = 0
+		CreatePolyImage( 512, 64, 2.25, angle ).save( 'gen/' + str(i) + '.png' )
+		CreateGradientImage( 512, angle ).save( 'gen/' + str(i) + 'G.png' )
