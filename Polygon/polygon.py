@@ -32,9 +32,8 @@ def AverageColorRange( max, x1, x2 ):
 	bchange = bmax - bmin
 	range = (x2 - x1) / max
 	v = 0.1
-	v = random.uniform(-v, v)
-	x2 = (x2/max) + v
-	x1 = (x1/max) + v/4
+	x2 = (x2/max) + random.uniform(0, v)
+	x1 = (x1/max) + random.uniform(-v, 0)
 	rsum = ( (rchange/2 * x2 * x2) + (rmin * x2 ) ) - ( (rchange/2 * x1 * x1) + (rmin * x1 ) )
 	gsum = ( (gchange/2 * x2 * x2) + (gmin * x2 ) ) - ( (gchange/2 * x1 * x1) + (gmin * x1 ) )
 	bsum = ( (bchange/2 * x2 * x2) + (bmin * x2 ) ) - ( (bchange/2 * x1 * x1) + (bmin * x1 ) )
