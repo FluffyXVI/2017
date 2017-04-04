@@ -62,6 +62,21 @@ def CreatePolyImage( size, cell, vrate, angle ):
 	img = img.rotate( angle )
 	img = img.crop( (cell, cell, cell+size, cell+size) )
 	return img
+	
+def CreateGradientImage( size, angle ):
+	img = Image.new( 'RGB', ( 512, 512 ), 'black' )
+	px = img.load()
+	rchange = rmax - rmin
+	gchange = gmax - gmin
+	bchange = bmax - bmin
+	for xx in range( img.width ):
+		xi = xx/512
+		rval = math.floor(rmin + rchange*xi)
+		gval = math.floor(gmin + gchange*xi)
+		bval = math.floor(bmin + bchange*xi)
+		for yy in range( img.height ):
+			px[xx,yy] = ( rval, gval, bval )
+	return img
 
 if __name__ == "__main__":
 	for i in range(100):
