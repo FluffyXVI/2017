@@ -1,0 +1,103 @@
+<html>
+	<head>
+		<style>
+			body {
+				font-family: sans-serif;
+			}
+			
+			h1, h2, h3 {
+				text-align: center;
+				margin: 4px 0;
+			}
+			
+			.container {
+				text-align: center;
+			}
+			
+			.card {
+				margin: 16px 16px;
+				width: 15vw;
+				height: 15vw;
+				display: inline-block;
+				color: black;
+				text-align: center;
+				text-decoration: none;
+				position: relative;
+				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			}
+			.card img {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+			}
+			
+			.card .bubble {
+				position: absolute;
+				display: block;
+				width: 12.5vw;
+				height: 12.5vw;
+				top: 1.5vw;
+				left: 1.5vw;
+				
+				background-color: white;
+				border-radius: 100%;
+				padding: 12.5%;
+				box-sizing: border-box;
+				overflow: hidden;
+				
+				transition: opacity 0.5s;
+				opacity: 0;
+			}
+			.card:hover .bubble {
+				display: block;
+				opacity: 0.8;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class='container'>
+			<a class='card' href='infopage.php?page=cheetah'>
+				<img src='img/cheetah.jpg'/>
+				<div class='bubble'>
+					Short description of a cheetah. I'm too lazy to write these descriptions. Cheetahs are not lazy, they're pretty fast. They could write these descriptions very quickly.
+				</div>
+			</a>
+			<a class='card' href='infopage.php?page=elephant'>
+				<img src='img/elephant.jpg'/>
+				<div class='bubble'>
+					Short description of an elephant. They're big creatures, usually gray.
+				</div>
+			</a>
+			<a class='card' href='infopage.php?page=panda'>
+				<img src='img/panda.jpg'/>
+				<div class='bubble'>
+					Not to be confused with Red Pandas. These ones are called Giant Pandas, but that's mean to them :(
+				</div>
+			</a>
+			
+			<br>
+			
+			<a class='card' href='infopage.php?page=penguin'>
+				<img src='img/penguin.jpg'/>
+				<div class='bubble'>
+					They're birds, but they can't even fly. Wow. They used to live at the North Pole, but wouldn't pay rent on time so the Polar Bears kicked them out.
+				</div>
+			</a>
+			<a class='card' href='infopage.php?page=seal'>
+				<img src='img/seal.jpg'/>
+				<div class='bubble'>
+					Seals are pretty great animals. They swim a lot, and they're generally pretty lazy. It's a good life for seals.
+				</div>
+			</a>
+			<a class='card' href='infopage.php?page=zebra'>
+				<img src='img/zebra.jpg'/>
+				<div class='bubble'>
+					Are they black with white stripes, or white with black stripes?
+				</div>
+			</a>
+		</div>
+		
+	</body>
+</html>

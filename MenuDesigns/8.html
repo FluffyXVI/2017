@@ -1,0 +1,65 @@
+<html>
+	<head>
+		<style>
+			body {
+				font-family: sans-serif;
+			}
+			
+			h1, h2, h3 {
+				text-align: center;
+			}
+			
+			.container {
+				text-align: center;
+				margin-top: 12.5%;
+			}
+			
+			.card {
+				width: 15vw;
+				height: 15vw;
+				display: inline-block;
+				color: black;
+				text-align: center;
+				text-decoration: none;
+				position: relative;
+				transform: skewX(165deg);
+				margin: -2.5px;
+				border-top: 4px solid #2c3e50;
+				border-bottom: 4px solid #2c3e50;
+				border-right: 4px solid #34495e;
+			}
+			.card img {
+				width: 100%;
+				filter: grayscale(80%);
+				transition: filter 0.5s;
+			}
+			.card:hover img {
+				filter: grayscale(0%);
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class='container'>
+			<a class='card' href='infopage.php?page=cheetah' style='border-left: 4px solid #2c3e50'>
+				<img src='img/cheetah.jpg'/>
+			</a>
+			<a class='card' href='infopage.php?page=elephant'>
+				<img src='img/elephant.jpg'/>
+			</a>
+			<a class='card' href='infopage.php?page=panda'>
+				<img src='img/panda.jpg'/>
+			</a>
+			<a class='card' href='infopage.php?page=penguin'>
+				<img src='img/penguin.jpg'/>
+			</a>
+			<a class='card' href='infopage.php?page=seal'>
+				<img src='img/seal.jpg'/>
+			</a>
+			<a class='card' href='infopage.php?page=zebra' style='border-right: 4px solid #2c3e50'>
+				<img src='img/zebra.jpg'/>
+			</a>
+		</div>
+		
+	</body>
+</html>

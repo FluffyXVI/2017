@@ -1,0 +1,78 @@
+<html>
+	<head>
+		<style>
+			body {
+				font-family: sans-serif;
+			}
+			
+			h1, h2, h3 {
+				text-align: center;
+				margin: 4px 0;
+			}
+			
+			.container {
+				margin-top: 20vh;
+				text-align: center;
+			}
+			
+			.bubble {
+				margin: 16px 16px;
+				height: 40vh;
+				display: inline-block;
+				color: black;
+				text-align: center;
+				text-decoration: none;
+				top: 0px;
+			}
+			.bubble img {
+				display: inline-block;
+				width: 12.5vw;
+				border-radius: 100%;
+				border: 8px solid #3498db;
+				
+				transition: width 0.5s;
+			}
+			.bubble:hover img {
+				width: 16vw;
+			}
+			.bubble h1 {
+				font-size: 32px;
+				transition: font-size 0.5s;
+				color: #2980b9;
+			}
+			.bubble:hover h1 {
+				font-size: 48px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class='container'>
+			<a class='bubble' href='infopage.php?page=cheetah'>
+				<img src='img/cheetah.jpg'/>
+				<h1> Cheetah </h1>
+			</a>
+			<a class='bubble' href='infopage.php?page=elephant'>
+				<img src='img/elephant.jpg'/>
+				<h1> Elephant </h1>
+			</a>
+			<a class='bubble' href='infopage.php?page=panda'>
+				<img src='img/panda.jpg'/>
+				<h1> Panda </h1>
+			</a>
+			
+			<a class='bubble' href='infopage.php?page=penguin'>
+				<img src='img/penguin.jpg'/>
+				<h1> Penguin </h1>
+			</a>
+			<a class='bubble' href='infopage.php?page=seal'>
+				<img src='img/seal.jpg'/>
+				<h1> Seal </h1>
+			</a>
+			<a class='bubble' href='infopage.php?page=zebra'>
+				<img src='img/zebra.jpg'/>
+				<h1> Zebra </h1>
+			</a>
+		</div>
+		
+	</body>
+</html>

@@ -1,0 +1,132 @@
+<html>
+	<head>
+		<style>
+			body {
+				font-family: sans-serif;
+			}
+			
+			h1, h2, h3 {
+				text-align: center;
+				margin: 4px 0;
+			}
+			
+			.container {
+				text-align: center;
+			}
+			
+			.bubble {
+				margin: 16px 16px;
+				width: 20vw;
+				height: 20vw;
+				display: inline-block;
+				position: relative;
+				color: black;
+				border-radius: 100%;
+			}
+			
+			.frontside, .backside {
+				width: 100%;
+				height: 100%;
+				backface-visibility: hidden;
+				transition: transform 0.6s;
+				background-color: white;
+				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+				position: absolute;
+				overflow: hidden;
+				border-radius: 100%;
+			}
+			
+			.frontside {
+				z-index: 2;
+			}
+			.frontside img {
+				width: 100%;
+			}
+			
+			.backside {
+				z-index: 1;
+				transform: rotateY(180deg);
+			}
+			.backside p {
+				margin: 0;
+				text-align: left;
+				padding: 4vw;;
+			}
+			
+			.bubble:hover .frontside {
+				transform: rotateY(180deg);
+			}
+			.bubble:hover .backside {
+				transform: rotateY(0deg);
+			}
+		</style>
+	</head>
+	<body>
+		<div class='container'>
+			<a class='bubble' href='infopage.php?page=cheetah'>
+				<div class='frontside'>
+					<img src='img/cheetah.jpg'/>
+					<h1> Cheetah </h1>
+					<h3> Acinonyx jubatus </h3>
+				</div>
+				<div class='backside'>
+					<p> Short description of a cheetah. I'm too lazy to write these descriptions. Cheetahs are not lazy, they're pretty fast. They could write these descriptions very quickly. </p>
+				</div>
+			</a>
+			<a class='bubble' href='infopage.php?page=elephant'>
+				<div class='frontside'>
+					<img src='img/elephant.jpg'/>
+					<h1> Elephant </h1>
+					<h3> Loxodonta africana </h3>
+				</div>
+				<div class='backside'>
+					<p> Short description of an elephant. They're big creatures, usually gray. </p>
+				</div>
+			</a>
+			<a class='bubble' href='infopage.php?page=panda'>
+				<div class='frontside'>
+					<img src='img/panda.jpg'/>
+					<h1> Panda </h1>
+					<h3> Ailuropoda melanoleuca </h3>
+				</div>
+				<div class='backside'>
+					<p> Not to be confused with Red Pandas. These ones are called Giant Pandas, but that's mean to them :(  </p>
+				</div>
+			</a>
+			
+			<br>
+			
+			<a class='bubble' href='infopage.php?page=penguin'>
+				<div class='frontside'>
+					<img src='img/penguin.jpg'/>
+					<h1> Penguin </h1>
+					<h3> Aptenodytes forsteri </h3>
+				</div>
+				<div class='backside'>
+					<p> They're birds, but they can't even fly. Wow. They used to live at the North Pole, but wouldn't pay rent on time so the Polar Bears kicked them out. </p>
+				</div>
+			</a>
+			<a class='bubble' href='infopage.php?page=seal'>
+				<div class='frontside'>
+					<img src='img/seal.jpg'/>
+					<h1> Seal </h1>
+					<h3> Phoca vitulina </h3>
+				</div>
+				<div class='backside'>
+					<p> Seals are pretty great animals. They swim a lot, and they're generally pretty lazy. It's a good life for seals. </p>
+				</div>
+			</a>
+			<a class='bubble' href='infopage.php?page=zebra'>
+				<div class='frontside'>
+					<img src='img/zebra.jpg'/>
+					<h1> Zebra </h1>
+					<h3> Equus quagga </h3>
+				</div>
+				<div class='backside'>
+					<p> Are they black with white stripes, or white with black stripes? </p>
+				</div>
+			</a>
+		</div>
+		
+	</body>
+</html>

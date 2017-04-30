@@ -1,0 +1,90 @@
+<html>
+	<head>
+		<style>
+			body {
+				font-family: sans-serif;
+			}
+			
+			h1, h2, h3 {
+				text-align: center;
+				margin: 4px 0;
+			}
+			
+			.container {
+				text-align: center;
+			}
+			
+			.card {
+				margin: 16px 16px;
+				width: 15vw;
+				height: 15vw;
+				display: inline-block;
+				color: black;
+				text-align: center;
+				text-decoration: none;
+				position: relative;
+				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			}
+			.card img {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				filter: grayscale(100%);
+				transition: filter 0.5s;
+			}
+			.card:hover img {
+				filter: grayscale(0%);
+			}
+			
+			.card .bubble {
+				position: absolute;
+				display: block;
+				width: 12.5vw;
+				height: 12.5vw;
+				top: 1.5vw;
+				left: 1.5vw;
+				
+				background-color: white;
+				border-radius: 100%;
+				padding: 12.5%;
+				box-sizing: border-box;
+				overflow: hidden;
+				
+				transition: opacity 0.5s;
+				opacity: 0;
+			}
+			.card:hover .bubble {
+				display: block;
+				opacity: 0.8;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class='container'>
+			<a class='card' href='infopage.php?page=cheetah'>
+				<img src='img/cheetah.jpg'/>
+			</a>
+			<a class='card' href='infopage.php?page=elephant'>
+				<img src='img/elephant.jpg'/>
+			</a>
+			<a class='card' href='infopage.php?page=panda'>
+				<img src='img/panda.jpg'/>
+			</a>
+			
+			<br>
+			
+			<a class='card' href='infopage.php?page=penguin'>
+				<img src='img/penguin.jpg'/>
+			</a>
+			<a class='card' href='infopage.php?page=seal'>
+				<img src='img/seal.jpg'/>
+			</a>
+			<a class='card' href='infopage.php?page=zebra'>
+				<img src='img/zebra.jpg'/>
+			</a>
+		</div>
+		
+	</body>
+</html>
