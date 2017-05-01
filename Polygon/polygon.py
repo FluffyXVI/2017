@@ -17,28 +17,27 @@ def CreatePolys( width, height, c, v ):
 	return points
 	
 def GetColor( max, x, y, v ):
-	fracx = x/max + random.uniform(-v, v)
+	fracx = (x/max) + random.uniform(-v, v)
 	fracy = y/max
 	rchange = rmax - rmin
 	gchange = gmax - gmin
 	bchange = bmax - bmin
 	return ( math.floor(rchange*fracx) + rmin, math.floor(gchange*fracx) + gmin, math.floor(bchange*fracx) + bmin )
 	
-def AverageColorRange( max, x1, x2 ):
+def AverageColorRange( maxx, x1, x2 ):
 	# ax + b gets the color at point x
 	# This will need three different definite integrations
 	rchange = rmax - rmin
 	gchange = gmax - gmin
 	bchange = bmax - bmin
-	range = (x2 - x1) / max
-	v = 0.1
-	x2 = (x2/max) + random.uniform(0, v)
-	x1 = (x1/max) + random.uniform(-v, 0)
+	range = (x2 - x1) / maxx
+	v = 0.08
+	x2 = min( (x2/maxx) + random.uniform(0, v), 255 )
+	x1 = max( (x1/maxx) + random.uniform(-v, 0), 0 )
 	rsum = ( (rchange/2 * x2 * x2) + (rmin * x2 ) ) - ( (rchange/2 * x1 * x1) + (rmin * x1 ) )
 	gsum = ( (gchange/2 * x2 * x2) + (gmin * x2 ) ) - ( (gchange/2 * x1 * x1) + (gmin * x1 ) )
 	bsum = ( (bchange/2 * x2 * x2) + (bmin * x2 ) ) - ( (bchange/2 * x1 * x1) + (bmin * x1 ) )
 	return ( math.floor( rsum/range ), math.floor( gsum/range ), math.floor( bsum/range ) )
-		
 	
 def CreatePolyImage( size, cell, vrate, angle ):
 	grid = CreatePolys( size+cell+cell, size+cell+cell, cell, cell/2.25 )
@@ -52,12 +51,14 @@ def CreatePolyImage( size, cell, vrate, angle ):
 				p1 = grid[row][point]
 				p2 = grid[row+1][point]
 				p3 = grid[row][point+1]
-				d.polygon( [ (p1[0], p1[1]), (p2[0], p2[1]), (p3[0], p3[1]) ], GetColor( size/cell, row, point, 0.05 ) )
+				#d.polygon( [ (p1[0], p1[1]), (p2[0], p2[1]), (p3[0], p3[1]) ], GetColor( size/cell, row, point, 0.05 ) )
+				d.polygon( [ (p1[0], p1[1]), (p2[0], p2[1]), (p3[0], p3[1]) ], AverageColorRange( size-cell, min( p1[0], p2[0], p3[0] ), max( p1[0], p2[0], p3[0] ) ) )
 				
 				p1 = grid[row][point+1]
 				p2 = grid[row+1][point]
 				p3 = grid[row+1][point+1]
-				d.polygon( [ (p1[0], p1[1]), (p2[0], p2[1]), (p3[0], p3[1]) ], GetColor( size/cell, row+0.15, point+0.15, 0.1 ) )
+				#d.polygon( [ (p1[0], p1[1]), (p2[0], p2[1]), (p3[0], p3[1]) ], GetColor( size/cell, row+0.15, point+0.15, 0.1 ) )
+				d.polygon( [ (p1[0], p1[1]), (p2[0], p2[1]), (p3[0], p3[1]) ], AverageColorRange( size-cell, min( p1[0], p2[0], p3[0] ), max( p1[0], p2[0], p3[0] ) ) )
 	img = img.rotate( angle )
 	img = img.crop( (cell, cell, cell+size, cell+size) )
 	return img
@@ -76,6 +77,7 @@ def CreateGradientImage( size, angle ):
 		for yy in range( img.height ):
 			px[xx,yy] = ( rval, gval, bval )
 	return img
+	
 
 if __name__ == "__main__":
 	for i in range(100):
@@ -96,5 +98,5 @@ if __name__ == "__main__":
 		
 		#angle = random.choice( [0, 90, 180, 270] )
 		angle = 0
-		CreatePolyImage( 512, 64, 2.25, angle ).save( 'gen/' + str(i) + '.png' )
-		CreateGradientImage( 512, angle ).save( 'gen/' + str(i) + 'G.png' )
+		CreatePolyImage( 1440, 160, 2, angle ).save( 'gen/' + str(i) + '.png' )
+		#CreateGradientImage( 512, angle ).save( 'gen/' + str(i) + 'G.png' )
